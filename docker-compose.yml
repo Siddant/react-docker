@@ -1,0 +1,26 @@
+version: '3'
+services: 
+    react-app:
+        build:
+            # where the files and folders to be pulled from for this image 
+            context: .
+            # location of the dockerfile that is going to be used
+            dockerfile: Dockerfile.dev
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        stdin_open: true
+    react-app-test:
+        build:
+                # where the files and folders to be pulled from for this image 
+            context: .
+                # location of the dockerfile that is going to be used
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        # overriding a command inside of a docker file
+        command: ["yarn", "test"]
+
