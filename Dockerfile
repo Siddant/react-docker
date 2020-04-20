@@ -1,9 +1,9 @@
 
 FROM node:alpine as builder
 WORKDIR '/app'
-COPY package.json .
+COPY package*.json ./
 RUN yarn 
-COPY . .
+COPY ./ ./
 RUN yarn build
 # the from symbloises the start of the new step
 # a single block onyl has 1 from stage
