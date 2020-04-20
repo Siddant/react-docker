@@ -9,4 +9,19 @@ script:
     - docker run -e CI=true siddantgurung/react-docker yarn test
     # language: generic 
 # script:
-    # - docker run USERNAME/docker-react npm run test -- --coverage
+    # - docker run siddantgurung/react-docker yarn test -- --coverage
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "react-docker-application"
+    env: "ReactDockerApplication-env"
+    bucket_name: "elasticbeanstalk-us-east-2-528676440153"
+    bucket_path: "react-docker-application"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: "$AWS_SECRECT_KEY"
+
+# access_key_id: $AWS_ACCESS_KEY
+# secret_access_key: $AWS_SECRET_KEY
