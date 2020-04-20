@@ -1,5 +1,5 @@
 
-FROM node:alpine as builder
+FROM node:alpine
 WORKDIR '/app'
 COPY package*.json ./
 RUN yarn 
@@ -9,5 +9,5 @@ RUN yarn build
 # a single block onyl has 1 from stage
 FROM nginx
 EXPOSE 80
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
