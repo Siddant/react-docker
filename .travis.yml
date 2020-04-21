@@ -11,6 +11,7 @@ deploy:
     provider: heroku
     app: react-docker-app
     secret_access_key: $HEROKU_DEPLOY_KEY
+    access_key_id: $HEROKU_DEPLOY_KEY
     on:
         branch: master
         repo: Siddant/react-docker
