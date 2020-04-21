@@ -9,9 +9,8 @@ script:
     - docker run -e CI=true siddantgurung/react-docker yarn test
 deploy:
     provider: heroku
-    api_key:
-        secure: $HEROKU_DEPLOY_KEY
-        app: react-docker-app
-        on:
-            branch: master
-            repo: Siddant/react-docker
+    app: react-docker-app
+    secret_access_key: $HEROKU_DEPLOY_KEY
+    on:
+        branch: master
+        repo: Siddant/react-docker
