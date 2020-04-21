@@ -9,6 +9,7 @@ services:
         ports: 
             - "3000:3000"
         volumes: 
+            # donot map this folder or map the this folder with in
             - /app/node_modules
             - .:/app
         stdin_open: true

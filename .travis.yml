@@ -7,22 +7,11 @@ before_install:
 
 script:
     - docker run -e CI=true siddantgurung/react-docker yarn test
-    # language: generic 
-# script:
-    # - docker run siddantgurung/react-docker yarn test -- --coverage
 deploy:
-    provider: elasticbeanstalk
-    region: "us-east-2"
-    app: "react-docker-application"
-    env: "ReactDockerApplication-env"
-    bucket_name: "elasticbeanstalk-us-east-2-528676440153"
-    bucket_path: "react-docker-application"
-    on:
-        branch: master
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRECT_KEY
-    # secret_access_key:
-    #     secure: "$AWS_SECRECT_KEY"
-
-# access_key_id: $AWS_ACCESS_KEY
-# secret_access_key: $AWS_SECRET_KEY
+    provider: heroku
+    api_key:
+        secure: $HEROKU_DEPLOY_KEY
+        app: react-docker-app
+        on:
+            branch: master
+            repo: Siddant/react-docker
