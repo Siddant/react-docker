@@ -15,7 +15,7 @@ after_success:
 
 deploy:
     provider: heroku
-    app: react-docker
+    app: react-docker-app
     api_key:
         secure: $HEROKU_DEPLOY_KEY
     on:
