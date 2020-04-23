@@ -7,11 +7,17 @@ before_install:
 
 script:
     - docker run -e CI=true siddantgurung/react-docker yarn test
+
+after_success:
+    - docker build -t siddantgurung/react-docker .
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push siddantgurung/react-docker
+
 deploy:
     provider: heroku
     app: react-docker-app
-    secret_access_key: $HEROKU_DEPLOY_KEY
-    access_key_id: $HEROKU_DEPLOY_KEY
+    api_key:
+        secure: $HEROKU_DEPLOY_KEY
     on:
         branch: master
         repo: Siddant/react-docker
